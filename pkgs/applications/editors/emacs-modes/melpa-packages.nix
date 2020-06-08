@@ -111,6 +111,11 @@ let
           stripDebugList = [ "share" ];
         });
 
+        emacsql-sqlite3 = super.emacsql-sqlite3.overrideAttrs(attrs: {
+          nativeBuildInputs =
+            (attrs.nativeBuildInputs or [ ]) ++ [ external.sqlite3 ];
+        })
+
         # https://github.com/syl20bnr/evil-escape/pull/86
         evil-escape = super.evil-escape.overrideAttrs (attrs: {
           postPatch = ''
